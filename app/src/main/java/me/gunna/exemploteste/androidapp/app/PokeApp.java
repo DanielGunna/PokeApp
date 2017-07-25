@@ -5,7 +5,7 @@ import android.app.Application;
 import com.miguelbcr.ui.rx_paparazzo.RxPaparazzo;
 
 import me.gunna.exemploteste.androidapp.R;
-import rx_activity_result2.RxActivityResult;
+import rx_activity_result.RxActivityResult;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 /**

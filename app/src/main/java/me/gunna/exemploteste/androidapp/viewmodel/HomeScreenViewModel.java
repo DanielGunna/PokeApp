@@ -1,14 +1,18 @@
 package me.gunna.exemploteste.androidapp.viewmodel;
 
 
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 
+import me.gunna.exemploteste.androidapp.R;
 import me.gunna.exemploteste.androidapp.ui.fragments.BaseFragment;
 import me.gunna.exemploteste.androidapp.ui.fragments.BerriesFragment;
 import me.gunna.exemploteste.androidapp.ui.fragments.MovesFragment;
 import me.gunna.exemploteste.androidapp.ui.fragments.PokedexFragment;
 import me.gunna.exemploteste.androidapp.ui.fragments.PokemonsFragment;
-import rx.Observable;
-import rx.subjects.PublishSubject;
+
 
 /**
  * Created by Daniel on 18/07/17.
@@ -16,29 +20,45 @@ import rx.subjects.PublishSubject;
 
 public class HomeScreenViewModel extends ViewModel {
 
-    private PublishSubject<BaseFragment> mChangeFragmentSubject = PublishSubject.create();
 
-    public Observable<BaseFragment> getChangeFragmentObservable(){ return mChangeFragmentSubject.asObservable();}
+    private FragmentManager mFragmentManager;
+    private DrawerLayout mDrawer;
 
-    public HomeScreenViewModel(){
 
+    public HomeScreenViewModel(FragmentManager manager, DrawerLayout drawerLayout) {
+        mFragmentManager = manager;
+        mDrawer = drawerLayout;
+        replaceFragment(PokemonsFragment.newInstance());
     }
 
-    public void onClickPokemon(){
-        mChangeFragmentSubject.onNext(PokemonsFragment.newInstance());
+    public void onClickPokemon() {
+        mDrawer.closeDrawers();
+        replaceFragment(PokemonsFragment.newInstance());
     }
-    public void onClickPokedex(){
-        mChangeFragmentSubject.onNext(PokedexFragment.newInstance());
+
+    public void onClickPokedex() {
+        mDrawer.closeDrawers();
+        replaceFragment(PokedexFragment.newInstance());
     }
-    public void onClickMoves(){
-        mChangeFragmentSubject.onNext(MovesFragment.newInstance());
+
+    public void onClickMoves() {
+        mDrawer.closeDrawers();
+        replaceFragment(MovesFragment.newInstance());
     }
-    public void onClickBerries(){
-        mChangeFragmentSubject.onNext(BerriesFragment.newInstance());
+
+    public void onClickBerries() {
+        mDrawer.closeDrawers();
+        replaceFragment(BerriesFragment.newInstance());
     }
 
 
-
+    private void replaceFragment(BaseFragment fragment) {
+        if (mFragmentManager != null) {
+            FragmentTransaction transaction = mFragmentManager.beginTransaction();
+            transaction.replace(R.id.currentView, fragment);
+            transaction.commit();
+        }
+    }
 
     @Override
     public void destroy() {

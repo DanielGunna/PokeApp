@@ -27,6 +27,7 @@ public class MovesFragment extends BaseFragment<FragmentMovesBinding> {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        getActivity().setTitle("Moves");
         mViewBinding = FragmentMovesBinding.inflate(inflater,container,false);
         return mViewBinding.getRoot();
     }

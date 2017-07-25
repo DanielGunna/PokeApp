@@ -24,6 +24,7 @@ public class PokemonsFragment extends BaseFragment<FragmentPokemonsBinding> {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        getActivity().setTitle("Pokemons");
         mViewBinding = FragmentPokemonsBinding.inflate(inflater,container,false);
         return mViewBinding.getRoot();
     }

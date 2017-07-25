@@ -26,6 +26,7 @@ public class BerriesFragment extends BaseFragment<FragmentBerriesBinding> {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        getActivity().setTitle("Berries");
         mViewBinding = FragmentBerriesBinding.inflate(inflater,container,false);
         return mViewBinding.getRoot();
     }

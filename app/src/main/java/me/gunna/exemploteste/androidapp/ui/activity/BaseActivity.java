@@ -8,7 +8,7 @@ import android.support.v7.app.AppCompatActivity;
  * Created by Daniel on 18/07/17.
  */
 
-public  abstract  class BaseActivity<B extends ViewDataBinding> extends Activity {
+public  abstract  class BaseActivity<B extends ViewDataBinding> extends AppCompatActivity {
 
     protected B mViewBinding;
 

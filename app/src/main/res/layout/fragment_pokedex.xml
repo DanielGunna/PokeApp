@@ -6,6 +6,8 @@
         <TextView
             android:gravity="center"
             android:text="Pokedex"
+            android:textColor="@android:color/black"
+            android:textSize="40sp"
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
