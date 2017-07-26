@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="viewModel"
+            type="me.gunna.exemploteste.androidapp.viewmodel.PokemonScreenViewModel"/>
+    </data>
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical" android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <TextView
-            android:gravity="center"
-            android:text="Pokemons"
-            android:textColor="@android:color/black"
-            android:textSize="40sp"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/list_pokemons"
+            android:layout_width="match_parent"
+            app:adapter="@{viewModel.pokemonsAdapter}"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_pokemon_list"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 </layout>

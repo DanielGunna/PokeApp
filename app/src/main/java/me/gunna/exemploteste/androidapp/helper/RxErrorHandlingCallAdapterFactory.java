@@ -25,15 +25,15 @@ public class RxErrorHandlingCallAdapterFactory extends CallAdapter.Factory {
     }
 
     @Override
-    public CallAdapter<?> get(Type returnType, Annotation[] annotations, Retrofit retrofit) {
+    public CallAdapter<?,?> get(Type returnType, Annotation[] annotations, Retrofit retrofit) {
         return new RxCallAdapterWrapper(retrofit, original.get(returnType, annotations, retrofit));
     }
 
-    private static class RxCallAdapterWrapper implements CallAdapter<Observable<?>> {
+    private static class RxCallAdapterWrapper implements CallAdapter<Object,Observable<?>> {
         private final Retrofit retrofit;
-        private final CallAdapter<?> wrapped;
+        private final CallAdapter<?,?> wrapped;
 
-        public RxCallAdapterWrapper(Retrofit retrofit, CallAdapter<?> wrapped) {
+        public RxCallAdapterWrapper(Retrofit retrofit, CallAdapter<?,?> wrapped) {
             this.retrofit = retrofit;
             this.wrapped = wrapped;
         }
@@ -43,14 +43,13 @@ public class RxErrorHandlingCallAdapterFactory extends CallAdapter.Factory {
             return wrapped.responseType();
         }
 
-        @SuppressWarnings("unchecked")
         @Override
-        public <R> Observable<?> adapt(Call<R> call) {
+        public Observable<?> adapt(Call call) {
             return ((Observable) wrapped.adapt(call)).onErrorResumeNext(new Func1<Throwable, Observable>() {
-                @Override
-                public Observable call(Throwable throwable) {
-                    return Observable.error(asRetrofitException(throwable));
-                }
+                    @Override
+                    public Observable call(Throwable throwable) {
+                        return Observable.error(asRetrofitException(throwable));
+                    }
             });
         }
 

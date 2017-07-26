@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="containerViewModel"
+            type="me.gunna.exemploteste.androidapp.viewmodel.PokemonScreenViewModel"/>
+        <variable
+            name="viewModel"
+            type="me.gunna.exemploteste.androidapp.viewmodel.PokemonListItemViewModel"/>
+    </data>
+
+    <RelativeLayout
+        android:onClick="@{(v) -> containerViewModel.onClickItem(viewModel.item) }"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <View
+            android:layout_alignParentTop="true"
+            android:layout_width="match_parent"
+            android:background="@color/colorPrimary"
+            android:layout_height="1dp"/>
+        <TextView
+            android:padding="10dp"
+            tools:text="63 -"
+            android:textSize="18sp"
+            android:text="@{viewModel.pokemonId}"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimary"
+            android:id="@+id/txt_pokemonId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_toRightOf="@id/txt_pokemonId"
+            android:padding="10dp"
+            tools:text="Abra"
+            android:text="@{viewModel.pokemonName}"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimary"
+            android:id="@+id/txt_pokemonName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:layout_marginRight="10dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:tint="@color/colorAccent"
+            android:src="@android:drawable/ic_dialog_info"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+        <View
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:background="@color/colorPrimary"
+            android:layout_height="1dp"/>
+
+    </RelativeLayout>
+
+</layout>
