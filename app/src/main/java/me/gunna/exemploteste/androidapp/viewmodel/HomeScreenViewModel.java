@@ -1,17 +1,13 @@
 package me.gunna.exemploteste.androidapp.viewmodel;
 
 
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-
-import me.gunna.exemploteste.androidapp.R;
 import me.gunna.exemploteste.androidapp.ui.fragments.BaseFragment;
 import me.gunna.exemploteste.androidapp.ui.fragments.BerriesFragment;
 import me.gunna.exemploteste.androidapp.ui.fragments.MovesFragment;
 import me.gunna.exemploteste.androidapp.ui.fragments.PokedexFragment;
 import me.gunna.exemploteste.androidapp.ui.fragments.PokemonsFragment;
+import rx.Observable;
+import rx.subjects.ReplaySubject;
 
 
 /**
@@ -19,46 +15,19 @@ import me.gunna.exemploteste.androidapp.ui.fragments.PokemonsFragment;
  */
 
 public class HomeScreenViewModel extends ViewModel {
+    private final ReplaySubject<BaseFragment> mMenuOptionSubject = ReplaySubject.create();
 
+    public Observable<BaseFragment> getMenuOptionObservable(){return mMenuOptionSubject.asObservable();}
 
-    private FragmentManager mFragmentManager;
-    private DrawerLayout mDrawer;
+    public HomeScreenViewModel() {mMenuOptionSubject.onNext(PokemonsFragment.newInstance());}
 
+    public void onClickPokemon() {mMenuOptionSubject.onNext(PokemonsFragment.newInstance());}
 
-    public HomeScreenViewModel(FragmentManager manager, DrawerLayout drawerLayout) {
-        mFragmentManager = manager;
-        mDrawer = drawerLayout;
-        replaceFragment(PokemonsFragment.newInstance());
-    }
+    public void onClickPokedex() {mMenuOptionSubject.onNext(PokedexFragment.newInstance());}
 
-    public void onClickPokemon() {
-        mDrawer.closeDrawers();
-        replaceFragment(PokemonsFragment.newInstance());
-    }
+    public void onClickMoves()   {mMenuOptionSubject.onNext(MovesFragment.newInstance());}
 
-    public void onClickPokedex() {
-        mDrawer.closeDrawers();
-        replaceFragment(PokedexFragment.newInstance());
-    }
-
-    public void onClickMoves() {
-        mDrawer.closeDrawers();
-        replaceFragment(MovesFragment.newInstance());
-    }
-
-    public void onClickBerries() {
-        mDrawer.closeDrawers();
-        replaceFragment(BerriesFragment.newInstance());
-    }
-
-
-    private void replaceFragment(BaseFragment fragment) {
-        if (mFragmentManager != null) {
-            FragmentTransaction transaction = mFragmentManager.beginTransaction();
-            transaction.replace(R.id.currentView, fragment);
-            transaction.commit();
-        }
-    }
+    public void onClickBerries() {mMenuOptionSubject.onNext(BerriesFragment.newInstance());}
 
     @Override
     public void destroy() {

@@ -19,9 +19,7 @@ public class PokedexFragment extends BaseFragment<FragmentPokedexBinding> {
 
 
     public static PokedexFragment newInstance() {
-
         Bundle args = new Bundle();
-
         PokedexFragment fragment = new PokedexFragment();
         fragment.setArguments(args);
         return fragment;
@@ -30,7 +28,7 @@ public class PokedexFragment extends BaseFragment<FragmentPokedexBinding> {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        getActivity().setTitle("Pokédex");
+        getActivity().setTitle(getString(R.string.title_pokedex));
         mViewBinding = FragmentPokedexBinding.inflate(inflater,container,false);
         return mViewBinding.getRoot();
     }

@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
+import me.gunna.exemploteste.androidapp.R;
 import me.gunna.exemploteste.androidapp.databinding.FragmentMovesBinding;
 
 /**
@@ -16,9 +17,7 @@ import me.gunna.exemploteste.androidapp.databinding.FragmentMovesBinding;
 public class MovesFragment extends BaseFragment<FragmentMovesBinding> {
 
     public static MovesFragment newInstance() {
-
         Bundle args = new Bundle();
-
         MovesFragment fragment = new MovesFragment();
         fragment.setArguments(args);
         return fragment;
@@ -27,7 +26,7 @@ public class MovesFragment extends BaseFragment<FragmentMovesBinding> {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        getActivity().setTitle("Moves");
+        getActivity().setTitle(getString(R.string.title_moves));
         mViewBinding = FragmentMovesBinding.inflate(inflater,container,false);
         return mViewBinding.getRoot();
     }

@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import me.gunna.exemploteste.androidapp.R;
 import me.gunna.exemploteste.androidapp.databinding.FragmentPokemonsBinding;
 
 /**
@@ -24,7 +25,7 @@ public class PokemonsFragment extends BaseFragment<FragmentPokemonsBinding> {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        getActivity().setTitle("Pokemons");
+        getActivity().setTitle(getString(R.string.title_pokemons));
         mViewBinding = FragmentPokemonsBinding.inflate(inflater,container,false);
         return mViewBinding.getRoot();
     }

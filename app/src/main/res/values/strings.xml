@@ -6,4 +6,8 @@
     <string name="pokemons">Pokemons</string>
     <string name="berries">Berries</string>
     <string name="moves">Moves</string>
+    <string name="title_moves">Moves</string>
+    <string name="title_berries">Berries</string>
+    <string name="title_pokedex">Pokédex</string>
+    <string name="title_pokemons">Pokemons</string>
 </resources>

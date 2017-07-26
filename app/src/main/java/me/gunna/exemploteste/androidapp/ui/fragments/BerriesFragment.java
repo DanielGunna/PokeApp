@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import me.gunna.exemploteste.androidapp.R;
 import me.gunna.exemploteste.androidapp.databinding.FragmentBerriesBinding;
 
 
@@ -15,9 +16,7 @@ import me.gunna.exemploteste.androidapp.databinding.FragmentBerriesBinding;
 
 public class BerriesFragment extends BaseFragment<FragmentBerriesBinding> {
     public static BerriesFragment newInstance() {
-
         Bundle args = new Bundle();
-
         BerriesFragment fragment = new BerriesFragment();
         fragment.setArguments(args);
         return fragment;
@@ -26,7 +25,7 @@ public class BerriesFragment extends BaseFragment<FragmentBerriesBinding> {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        getActivity().setTitle("Berries");
+        getActivity().setTitle(getString(R.string.title_berries));
         mViewBinding = FragmentBerriesBinding.inflate(inflater,container,false);
         return mViewBinding.getRoot();
     }
