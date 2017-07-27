@@ -16,13 +16,17 @@ public class PokemonListItem extends Item<ItemPokemonListBinding> {
 
     private PokemonScreenViewModel mViewModel;
     private PokemonListItemViewModel mItemViewModel;
+    private PokemonListItemResponse mResponse;
 
 
     public PokemonListItem(PokemonListItemResponse response, PokemonScreenViewModel viewModel) {
         mViewModel = viewModel;
         mItemViewModel = new PokemonListItemViewModel(response, this);
-
+        mResponse = response;
     }
+
+
+    public PokemonListItemResponse getItemResponse(){return  mResponse;};
 
     @Override
     public int getLayout() {

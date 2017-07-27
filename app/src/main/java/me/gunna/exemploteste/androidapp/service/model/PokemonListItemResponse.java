@@ -2,11 +2,13 @@ package me.gunna.exemploteste.androidapp.service.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import org.parceler.Parcel;
+
 
 /**
  * Created by Daniel on 26/07/17.
  */
-
+@Parcel(Parcel.Serialization.BEAN)
 public class PokemonListItemResponse {
     @SerializedName("url")
     private String pokemonUrl;

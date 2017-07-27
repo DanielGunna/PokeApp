@@ -6,15 +6,24 @@
             name="viewModel"
             type="me.gunna.exemploteste.androidapp.viewmodel.PokemonScreenViewModel"/>
     </data>
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical" android:layout_width="match_parent"
         android:layout_height="match_parent">
         <android.support.v7.widget.RecyclerView
+            android:visibility="@{!viewModel.isLoading}"
             android:id="@+id/list_pokemons"
             android:layout_width="match_parent"
             app:adapter="@{viewModel.pokemonsAdapter}"
             app:layoutManager="android.support.v7.widget.LinearLayoutManager"
             tools:listitem="@layout/item_pokemon_list"
             android:layout_height="wrap_content"/>
-    </LinearLayout>
+
+        <com.wang.avi.AVLoadingIndicatorView
+            android:visibility="@{viewModel.isLoading}"
+            app:indicatorName="TriangleSkewSpinIndicator"
+            app:indicatorColor="@color/colorPrimaryDark"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
 </layout>

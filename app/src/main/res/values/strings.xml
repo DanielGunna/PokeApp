@@ -10,4 +10,5 @@
     <string name="title_berries">Berries</string>
     <string name="title_pokedex">Pokédex</string>
     <string name="title_pokemons">Pokemons</string>
+    <string name="title_pokemon_details">Pokemon Details - %s</string>
 </resources>

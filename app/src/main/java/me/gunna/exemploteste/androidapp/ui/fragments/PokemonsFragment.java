@@ -8,7 +8,10 @@ import android.view.ViewGroup;
 
 import me.gunna.exemploteste.androidapp.R;
 import me.gunna.exemploteste.androidapp.databinding.FragmentPokemonsBinding;
+import me.gunna.exemploteste.androidapp.service.model.PokemonListItemResponse;
+import me.gunna.exemploteste.androidapp.ui.activity.PokemonDetailsFragment;
 import me.gunna.exemploteste.androidapp.viewmodel.PokemonScreenViewModel;
+import rx.subscriptions.CompositeSubscription;
 
 /**
  * Created by Daniel on 18/07/17.
@@ -17,6 +20,7 @@ import me.gunna.exemploteste.androidapp.viewmodel.PokemonScreenViewModel;
 public class PokemonsFragment extends BaseFragment<FragmentPokemonsBinding> {
 
     private PokemonScreenViewModel mViewModel;
+    private CompositeSubscription mSubscriptions =  new CompositeSubscription();
 
     public static PokemonsFragment newInstance() {
         Bundle args = new Bundle();
@@ -42,7 +46,17 @@ public class PokemonsFragment extends BaseFragment<FragmentPokemonsBinding> {
     @Override
     public void onResume() {
         super.onResume();
-        mViewModel.getPokemonList();
+    }
+
+    private void addOnClickSubscription() {
+        mSubscriptions.add(
+                mViewModel.getOnClickObservable()
+                .subscribe(this::onClickItem)
+        );
+    }
+
+    private void onClickItem(PokemonListItemResponse item){
+        replaceFragment(PokemonDetailsFragment.newInstance(item),R.id.currentView);
     }
 
     @Override

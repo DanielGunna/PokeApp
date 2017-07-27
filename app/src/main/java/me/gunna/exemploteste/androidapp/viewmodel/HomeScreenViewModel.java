@@ -16,18 +16,29 @@ import rx.subjects.ReplaySubject;
 
 public class HomeScreenViewModel extends ViewModel {
     private final ReplaySubject<BaseFragment> mMenuOptionSubject = ReplaySubject.create();
+    private static final int FRAG_ID_POKEMONS =  0;
+    private static final int FRAG_ID_POKEDEX  =  1;
+    private static final int FRAG_ID_MOVES    =  2;
+    private static final int FRAG_ID_BERRIES  =  3;
+
+    private final BaseFragment[] mMenuFragments = {
+            PokemonsFragment.newInstance(),
+            PokedexFragment.newInstance(),
+            MovesFragment.newInstance(),
+            BerriesFragment.newInstance()
+    };
 
     public Observable<BaseFragment> getMenuOptionObservable(){return mMenuOptionSubject.asObservable();}
 
-    public HomeScreenViewModel() {mMenuOptionSubject.onNext(PokemonsFragment.newInstance());}
+    public HomeScreenViewModel() {mMenuOptionSubject.onNext(mMenuFragments[FRAG_ID_POKEMONS]);}
 
-    public void onClickPokemon() {mMenuOptionSubject.onNext(PokemonsFragment.newInstance());}
+    public void onClickPokemon() {mMenuOptionSubject.onNext(mMenuFragments[FRAG_ID_POKEMONS]);}
 
-    public void onClickPokedex() {mMenuOptionSubject.onNext(PokedexFragment.newInstance());}
+    public void onClickPokedex() {mMenuOptionSubject.onNext(mMenuFragments[FRAG_ID_POKEDEX]);}
 
-    public void onClickMoves()   {mMenuOptionSubject.onNext(MovesFragment.newInstance());}
+    public void onClickMoves()   {mMenuOptionSubject.onNext(mMenuFragments[FRAG_ID_MOVES]);}
 
-    public void onClickBerries() {mMenuOptionSubject.onNext(BerriesFragment.newInstance());}
+    public void onClickBerries() {mMenuOptionSubject.onNext(mMenuFragments[FRAG_ID_BERRIES]);}
 
     @Override
     public void destroy() {

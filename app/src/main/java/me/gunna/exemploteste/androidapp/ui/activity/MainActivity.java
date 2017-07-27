@@ -45,16 +45,17 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
         );
     }
 
+
+    private void replaceFragment(BaseFragment fragment){
+        mViewBinding.draweLayout.closeDrawers();
+        super.replaceFragment(fragment,R.id.currentView);
+    }
+
     private void setupDrawerMenu() {
         mViewBinding.draweLayout.addDrawerListener(getToogle());
     }
 
-    private void replaceFragment(BaseFragment fragment) {
-        mViewBinding.draweLayout.closeDrawers();
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.currentView, fragment);
-        transaction.commit();
-    }
+
 
     public DrawerLayout.DrawerListener getToogle() {
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mViewBinding.draweLayout,
